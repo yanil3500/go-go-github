@@ -17,11 +17,13 @@ class GitHubAuthController: UIViewController {
     }
 
     @IBAction func printTokenTapped(_ sender: Any) {
-        
-        
+
+
     }
 
     @IBAction func loginButtonTapped(_ sender: Any) {
-        
+
+        let parameters = ["scope" : "email,user"]
+        GitHub.shared.oAuthRequestWith(parameters: parameters)
     }
 }

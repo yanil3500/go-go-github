@@ -21,7 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        print("Inside of AppDelegate: \(url)")
+        let code = try? GitHub.shared.getCodeFrom(url: url)
+        
+        print("Inside of AppDelegate: \(code)")
         return true
     }
     
