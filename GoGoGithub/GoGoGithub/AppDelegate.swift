@@ -24,6 +24,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let code = try? GitHub.shared.getCodeFrom(url: url)
         
         print("Inside of AppDelegate: \(code)")
+        
+        GitHub.shared.tokenRequestFor(url: url, saveOptions: .UserDefaults) { (success) in
+            if success {
+                print("Token was successfully retrieved")
+            } else {
+                print("Token retrieval failed.")
+            }
+        }
         return true
     }
     

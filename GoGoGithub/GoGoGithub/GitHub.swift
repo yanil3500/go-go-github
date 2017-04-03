@@ -13,7 +13,7 @@ enum GitHubAuthError: Error {
 }
 
 enum SaveOptions {
-    case userDefaults
+    case UserDefaults
 }
 let kOAuthBaseURLString = "https://github.com/login/oauth/"
 
@@ -44,5 +44,50 @@ class GitHub {
         guard let code = url.absoluteString.components(separatedBy: "=").last else { throw GitHubAuthError.extractingCode }
         
         return code
+    }
+    
+    func tokenRequestFor(url: URL, saveOptions: SaveOptions, completion: @escaping GitHubOAuthCompletion) {
+        
+        func complete(success: Bool){
+            OperationQueue.main.addOperation {
+                completion(success)
+            }
+        }
+        do {
+            let code = try getCodeFrom(url: url)
+            
+            let requestString = "\(kOAuthBaseURLString)access_token?client_id=\(gitHubCredentials.shared.gitHubClientID)&client_secret=\(gitHubCredentials.shared.gitHubClientSecret)&code=\(code)"
+            
+            guard let requestURL = URL(string: requestString) else { return }
+            
+            let session = URLSession(configuration: .default)
+            
+            session.dataTask(with: requestURL, completionHandler: { (data, response, error) in
+                if error != nil { print("Failed to retrieve token: \(String(describing: error))");complete(success: false) }
+                
+                guard let data = data else { complete(success: false); return }
+                
+                guard let dataString = String(data: data, encoding: .utf8) else { complete(success: false); return}
+                
+                print("Inside of tokenRequestFor: \(dataString)")
+                
+                print("Inside of tokenRequestFor:  \(String(describing: dataString.components(separatedBy: "&").first?.components(separatedBy: "=").last))")
+                
+                let userDefault = UserDefaults()
+                userDefault.save(accessToken: String(describing: dataString.components(separatedBy: "&").first?.components(separatedBy: "=").last))
+                
+                
+                
+                
+                complete(success: true)
+            //The resume method tells our data task to fire
+            }).resume()
+            
+            
+        } catch {
+            print("Cannot get code: \(error)")
+            complete(success: false)
+        }
+        
     }
 }
