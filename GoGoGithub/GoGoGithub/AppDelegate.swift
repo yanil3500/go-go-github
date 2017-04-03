@@ -21,10 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        let code = try? GitHub.shared.getCodeFrom(url: url)
-        
-        print("Inside of AppDelegate: \(code)")
-        
         GitHub.shared.tokenRequestFor(url: url, saveOptions: .UserDefaults) { (success) in
             if success {
                 print("Token was successfully retrieved")

@@ -17,7 +17,8 @@ class GitHubAuthController: UIViewController {
     }
 
     @IBAction func printTokenTapped(_ sender: Any) {
-
+        
+        print("Inside of printTokenTapped: \(GitHub.userDefault.getAccessToken())")
 
     }
 

@@ -22,6 +22,7 @@ typealias GitHubOAuthCompletion = (Bool) -> ()
 class GitHub {
     static let shared = GitHub()
     
+    static let userDefault = UserDefaults()
     private init() {}
     
     func oAuthRequestWith(parameters: [String : String]){
@@ -33,7 +34,7 @@ class GitHub {
         }
         
         print("Inside of oAuthRequestWith method: the parameterString \(parametersString)")
-        if let requestURL = URL(string: "\(kOAuthBaseURLString)authorize?client_id=\(gitHubCredentials.shared.gitHubClientID)\(parametersString)") {
+        if let requestURL = URL(string: "\(kOAuthBaseURLString)authorize?client_id=\(gitHubClientID)\(parametersString)") {
             print("The requestURL: \(requestURL.absoluteString)")
             
             UIApplication.shared.open(requestURL)
@@ -56,7 +57,7 @@ class GitHub {
         do {
             let code = try getCodeFrom(url: url)
             
-            let requestString = "\(kOAuthBaseURLString)access_token?client_id=\(gitHubCredentials.shared.gitHubClientID)&client_secret=\(gitHubCredentials.shared.gitHubClientSecret)&code=\(code)"
+            let requestString = "\(kOAuthBaseURLString)access_token?client_id=\(gitHubClientID)&client_secret=\(gitHubClientSecret)&code=\(code)"
             
             guard let requestURL = URL(string: requestString) else { return }
             
@@ -71,11 +72,12 @@ class GitHub {
                 
                 print("Inside of tokenRequestFor: \(dataString)")
                 
+                guard let accessToken = dataString.components(separatedBy: "&").first?.components(separatedBy: "=").last else {complete(success: false); return }
                 print("Inside of tokenRequestFor:  \(String(describing: dataString.components(separatedBy: "&").first?.components(separatedBy: "=").last))")
                 
-                let userDefault = UserDefaults()
-                userDefault.save(accessToken: String(describing: dataString.components(separatedBy: "&").first?.components(separatedBy: "=").last))
+                GitHub.userDefault.save(accessToken: accessToken)
                 
+                print("Inside of tokenRequest: \(accessToken)")
                 
                 
                 
