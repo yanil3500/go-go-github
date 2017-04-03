@@ -8,22 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		CD4341D51E92B1EC00619530 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4341D41E92B1EC00619530 /* AppDelegate.swift */; };
-		CD4341D71E92B1EC00619530 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4341D61E92B1EC00619530 /* ViewController.swift */; };
 		CD4341DA1E92B1EC00619530 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD4341D81E92B1EC00619530 /* Main.storyboard */; };
 		CD4341DC1E92B1EC00619530 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD4341DB1E92B1EC00619530 /* Assets.xcassets */; };
 		CD4341DF1E92B1EC00619530 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD4341DD1E92B1EC00619530 /* LaunchScreen.storyboard */; };
 		CDAAE6361E92C91B00B59C3D /* GitHub.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAAE6351E92C91B00B59C3D /* GitHub.swift */; };
+		CDAAE63A1E92CE6500B59C3D /* GitHubAuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAAE6391E92CE6500B59C3D /* GitHubAuthController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CD4341D11E92B1EC00619530 /* GoGoGithub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoGoGithub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD4341D41E92B1EC00619530 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CD4341D61E92B1EC00619530 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CD4341D91E92B1EC00619530 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CD4341DB1E92B1EC00619530 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CD4341DE1E92B1EC00619530 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CD4341E01E92B1EC00619530 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CDAAE6351E92C91B00B59C3D /* GitHub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHub.swift; sourceTree = "<group>"; };
+		CDAAE6391E92CE6500B59C3D /* GitHubAuthController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GitHubAuthController.swift; path = ../GitHubAuthController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,8 +56,8 @@
 		CD4341D31E92B1EC00619530 /* GoGoGithub */ = {
 			isa = PBXGroup;
 			children = (
+				CDAAE63B1E92CE7800B59C3D /* controllers */,
 				CD4341D41E92B1EC00619530 /* AppDelegate.swift */,
-				CD4341D61E92B1EC00619530 /* ViewController.swift */,
 				CD4341D81E92B1EC00619530 /* Main.storyboard */,
 				CD4341DB1E92B1EC00619530 /* Assets.xcassets */,
 				CDAAE6381E92C95800B59C3D /* model */,
@@ -73,6 +73,14 @@
 				CDAAE6351E92C91B00B59C3D /* GitHub.swift */,
 			);
 			name = model;
+			sourceTree = "<group>";
+		};
+		CDAAE63B1E92CE7800B59C3D /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CDAAE6391E92CE6500B59C3D /* GitHubAuthController.swift */,
+			);
+			name = controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,7 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDAAE6361E92C91B00B59C3D /* GitHub.swift in Sources */,
-				CD4341D71E92B1EC00619530 /* ViewController.swift in Sources */,
+				CDAAE63A1E92CE6500B59C3D /* GitHubAuthController.swift in Sources */,
 				CD4341D51E92B1EC00619530 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
