@@ -18,6 +18,7 @@
 		CDF486531E940C0700E0CB68 /* RepoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF486521E940C0700E0CB68 /* RepoViewController.swift */; };
 		CDF486551E940D5800E0CB68 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF486541E940D5800E0CB68 /* UIExtensions.swift */; };
 		CDF486571E94195C00E0CB68 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF486561E94195C00E0CB68 /* Repository.swift */; };
+		CDF4865B1E9455B600E0CB68 /* RepoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF4865A1E9455B600E0CB68 /* RepoCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		CDF486521E940C0700E0CB68 /* RepoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoViewController.swift; sourceTree = "<group>"; };
 		CDF486541E940D5800E0CB68 /* UIExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIExtensions.swift; path = ../UIExtensions.swift; sourceTree = "<group>"; };
 		CDF486561E94195C00E0CB68 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		CDF4865A1E9455B600E0CB68 /* RepoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 		CDAAE63B1E92CE7800B59C3D /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				CDF4865A1E9455B600E0CB68 /* RepoCell.swift */,
 				CDF486521E940C0700E0CB68 /* RepoViewController.swift */,
 				CDAAE6391E92CE6500B59C3D /* GitHubAuthController.swift */,
 			);
@@ -175,6 +178,7 @@
 				CDF486551E940D5800E0CB68 /* UIExtensions.swift in Sources */,
 				CDAAE63A1E92CE6500B59C3D /* GitHubAuthController.swift in Sources */,
 				CDF486571E94195C00E0CB68 /* Repository.swift in Sources */,
+				CDF4865B1E9455B600E0CB68 /* RepoCell.swift in Sources */,
 				CDF486531E940C0700E0CB68 /* RepoViewController.swift in Sources */,
 				CD4341D51E92B1EC00619530 /* AppDelegate.swift in Sources */,
 				CD0D112E1E92EC250071402A /* FoundationExtension.swift in Sources */,

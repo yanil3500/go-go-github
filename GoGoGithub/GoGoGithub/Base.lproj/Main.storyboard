@@ -79,19 +79,56 @@
         <scene sceneID="Eve-HR-GDd">
             <objects>
                 <viewController id="8ve-gi-LCV" customClass="RepoViewController" customModule="GoGoGithub" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="GhC-vl-7oz"/>
-                        <viewControllerLayoutGuide type="bottom" id="ggR-x5-F7w"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="IPO-su-9VP">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="98" sectionHeaderHeight="28" sectionFooterHeight="28" id="EHn-bx-FLq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="repoCell" rowHeight="98" id="nQC-Ae-dyJ" userLabel="repoCell" customClass="RepoCell" customModule="GoGoGithub" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="98"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nQC-Ae-dyJ" id="GFl-hz-bli">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repo Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iFh-4A-oWn">
+                                            <rect key="frame" x="0.0" y="7.5" width="375" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repo Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6NS-Jt-LVc">
+                                            <rect key="frame" x="0.0" y="36.5" width="375" height="13.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="iFh-4A-oWn" firstAttribute="top" secondItem="GFl-hz-bli" secondAttribute="top" constant="7.5" id="04p-4A-Z8A"/>
+                                        <constraint firstItem="6NS-Jt-LVc" firstAttribute="top" secondItem="iFh-4A-oWn" secondAttribute="bottom" constant="8" id="57b-N9-aDG"/>
+                                        <constraint firstItem="iFh-4A-oWn" firstAttribute="leading" secondItem="GFl-hz-bli" secondAttribute="leading" id="BHA-uy-bGN"/>
+                                        <constraint firstItem="6NS-Jt-LVc" firstAttribute="leading" secondItem="GFl-hz-bli" secondAttribute="leading" id="KzF-Rn-AV1"/>
+                                        <constraint firstAttribute="trailing" secondItem="6NS-Jt-LVc" secondAttribute="trailing" id="MYb-tc-AbD"/>
+                                        <constraint firstItem="6NS-Jt-LVc" firstAttribute="top" secondItem="iFh-4A-oWn" secondAttribute="bottom" constant="8" id="VN1-mR-Yy3"/>
+                                        <constraint firstAttribute="trailing" secondItem="iFh-4A-oWn" secondAttribute="trailing" id="Wy8-M9-HXH"/>
+                                        <constraint firstAttribute="bottom" secondItem="6NS-Jt-LVc" secondAttribute="bottom" constant="48" id="ef2-09-nKK"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="repoDescription" destination="6NS-Jt-LVc" id="MkJ-6L-DqX"/>
+                                    <outlet property="repoName" destination="iFh-4A-oWn" id="x5P-fl-W1S"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
+                    <connections>
+                        <outlet property="repoTableView" destination="EHn-bx-FLq" id="gZs-o2-ERD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Ro-uT-wic" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1042" y="139"/>
+            <point key="canvasLocation" x="1040.8" y="138.98050974512745"/>
         </scene>
     </scenes>
     <resources>
