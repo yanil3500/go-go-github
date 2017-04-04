@@ -19,15 +19,33 @@ let kOAuthBaseURLString = "https://github.com/login/oauth/"
 
 typealias GitHubOAuthCompletion = (SaveOptions, Bool) -> ()
 
-
+typealias FetchReposCompletion = ([Repository]?)->()
 class GitHub {
+    
+    private var session : URLSession
+    private var components : URLComponents
     static let shared = GitHub()
     
 //    static let userDefault = UserDefaults()
-    private init() {}
+    private init() {
+        self.session = URLSession(configuration: .default)
+        self.components = URLComponents()
+        
+        self.components.scheme = "https"
+        self.components.host = "api.github.com"
+        
+        if let token = UserDefaults.standard.getAccessToken(){
+            let queryItem = URLQueryItem(name: "access_token", value: token)
+            let queryItemByCreate = URLQueryItem(name: "sort", value: "updated")
+            let queryItemByCreateAsc = URLQueryItem(name: "direction", value: "desc")
+            self.components.queryItems = [queryItem, queryItemByCreate, queryItemByCreateAsc]
+        }
+        
+        
+    }
     
-    var clientId = gitHubClientID ?? nil
-    var clientSecret = gitHubClientSecret ?? nil
+    var clientId = gitHubClientID
+    var clientSecret = gitHubClientSecret
     
     func oAuthRequestWith(parameters: [String : String]){
         //Parameters will equal everything after question mark in a url
@@ -51,21 +69,22 @@ class GitHub {
         return code
     }
     
-    func tokenRequestFor(url: URL, saveOptions: SaveOptions, completion: @escaping GitHubOAuthCompletion) {
-        
-        //Helper function extracting access token
-        func getTokenFromString(tokenString: String) -> String? {
+    //Helper function extracting access token
+    func getTokenFrom(tokenString: String) -> String? {
+        if tokenString.contains("access_token"){
+            guard let indexOf = tokenString.components(separatedBy: "&").index(of: "access_token") else { return "" }
             
-            if tokenString.contains("access_token"){
-              guard let indexOf = tokenString.components(separatedBy: "&").index(of: "access_token") else { return "" }
+            guard let token = tokenString.components(separatedBy: "&")[indexOf].components(separatedBy: "=").last else {return ""}
             
-              guard let token = tokenString.components(separatedBy: "&")[indexOf].components(separatedBy: "=").last else {return ""}
-            
-              return token
-            }
+            print("Inside of getTokenFromString: \(token)")
+            return token
+        } else {
             
             return nil
         }
+    }
+    
+    func tokenRequestFor(url: URL, saveOptions: SaveOptions, completion: @escaping GitHubOAuthCompletion) {
         
         
         func complete(success: Bool){
@@ -74,6 +93,8 @@ class GitHub {
             }
         }
         do {
+            
+            
             let code = try getCodeFrom(url: url)
             
             let requestString = "\(kOAuthBaseURLString)access_token?client_id=\(gitHubClientID)&client_secret=\(gitHubClientSecret)&code=\(code)"
@@ -89,20 +110,11 @@ class GitHub {
                 
                 guard let dataString = String(data: data, encoding: .utf8) else { complete(success: false); return}
                 
-                print("Inside of tokenRequestFor: (Before string manipulation) \(dataString)")
+                guard let token = dataString.components(separatedBy: "&").first?.components(separatedBy: "=").last else { complete(success: false); return}
                 
-                
-                guard let accessToken = getTokenFromString(tokenString: dataString) else { complete(success: false); return}
-                
-                print("Inside of tokenRequestFor:  \(accessToken)")
-                
-                
-                UserDefaults.standard.save(accessToken: accessToken)
+                UserDefaults.standard.save(accessToken: token)
 
                 
-                
-                
-                print("Inside of tokenRequest: \(accessToken)")
                 
     
                 
@@ -117,5 +129,45 @@ class GitHub {
             complete(success: false)
         }
         
+    }
+    
+    func getRepos(completion: @escaping FetchReposCompletion){
+        
+        func returnToMain(results: [Repository]?){
+            OperationQueue.main.addOperation {
+                completion(results)
+            }
+        }
+        
+        self.components.path = "/user/repos"
+        
+        guard let url = self.components.url else { returnToMain(results: nil); return }
+        
+        self.session.dataTask(with: url) { (data, response, error) in
+            
+            if error != nil {
+                returnToMain(results: nil)
+                return;
+            }
+            
+            if let data = data {
+                var repos = [Repository]()
+                
+                do {
+                    if let rootJSON = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String : Any]] {
+                        for repoJSON in rootJSON {
+                            if let repo = Repository(json: repoJSON) {
+                                repos.append(repo)
+                            }
+                        }
+                        
+                        returnToMain(results: repos)
+                    }
+                } catch {
+                    
+                }
+            }
+            
+        }.resume()
     }
 }

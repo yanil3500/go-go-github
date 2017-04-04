@@ -17,10 +17,6 @@ class GitHubAuthController: UIViewController {
         
 
         super.viewDidLoad()
-        
-//        UserDefaults.standard.removeObject(forKey: "access_token")
-        
-        // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -49,12 +45,17 @@ class GitHubAuthController: UIViewController {
     @IBAction func loginButtonTapped(_ sender: Any) {
         
         if UserDefaults.standard.getAccessToken() == nil {
-            let parameters = ["scope" : "email,user"]
+            let parameters = ["scope" : "email,user,repo"]
             GitHub.shared.oAuthRequestWith(parameters: parameters)
         } else {
             print("Tap 'PRINT TOKEN' to see your token.")
         }
  
+    }
+    
+    func dismissAuthController(){
+        self.view.removeFromSuperview()
+        self.removeFromParentViewController()
     }
     
     
