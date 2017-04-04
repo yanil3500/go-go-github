@@ -53,6 +53,16 @@ class GitHub {
     
     func tokenRequestFor(url: URL, saveOptions: SaveOptions, completion: @escaping GitHubOAuthCompletion) {
         
+        //Helper function extracting access token
+        func getTokenFromString(tokenString: String) -> String {
+            guard let indexOf = tokenString.components(separatedBy: "&").index(of: "access_token") else { return ""}
+            
+            guard let token = tokenString.components(separatedBy: "&")[indexOf].components(separatedBy: "=").last else {return ""}
+            
+            return token
+        }
+        
+        
         func complete(success: Bool){
             OperationQueue.main.addOperation {
                 completion(saveOptions, success)
@@ -76,9 +86,10 @@ class GitHub {
                 
                 print("Inside of tokenRequestFor: (Before string manipulation) \(dataString)")
                 
-                guard let accessToken = dataString.components(separatedBy: "&").first?.components(separatedBy: "=").last else {complete(success: false); return }
                 
-                print("Inside of tokenRequestFor:  \(String(describing: dataString.components(separatedBy: "&").first?.components(separatedBy: "=").last))")
+                let accessToken = getTokenFromString(tokenString: dataString)
+                
+                print("Inside of tokenRequestFor:  \(accessToken)")
                 
                 
                 UserDefaults.standard.save(accessToken: accessToken)
@@ -88,8 +99,7 @@ class GitHub {
                 
                 print("Inside of tokenRequest: \(accessToken)")
                 
-                
-                
+    
                 
                 
                 complete(success: true)
