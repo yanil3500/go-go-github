@@ -13,17 +13,21 @@ enum GitHubAuthError: Error {
 }
 
 enum SaveOptions {
-    case UserDefaults
+    case UserDefaults(String?)
 }
 let kOAuthBaseURLString = "https://github.com/login/oauth/"
 
-typealias GitHubOAuthCompletion = (Bool) -> ()
+typealias GitHubOAuthCompletion = (SaveOptions, Bool) -> ()
+
 
 class GitHub {
     static let shared = GitHub()
     
-    static let userDefault = UserDefaults()
+//    static let userDefault = UserDefaults()
     private init() {}
+    
+    var clientId = gitHubClientID ?? nil
+    var clientSecret = gitHubClientSecret ?? nil
     
     func oAuthRequestWith(parameters: [String : String]){
         //Parameters will equal everything after question mark in a url
@@ -51,7 +55,7 @@ class GitHub {
         
         func complete(success: Bool){
             OperationQueue.main.addOperation {
-                completion(success)
+                completion(saveOptions, success)
             }
         }
         do {
@@ -70,14 +74,21 @@ class GitHub {
                 
                 guard let dataString = String(data: data, encoding: .utf8) else { complete(success: false); return}
                 
-                print("Inside of tokenRequestFor: \(dataString)")
+                print("Inside of tokenRequestFor: (Before string manipulation) \(dataString)")
                 
                 guard let accessToken = dataString.components(separatedBy: "&").first?.components(separatedBy: "=").last else {complete(success: false); return }
+                
                 print("Inside of tokenRequestFor:  \(String(describing: dataString.components(separatedBy: "&").first?.components(separatedBy: "=").last))")
                 
-                GitHub.userDefault.save(accessToken: accessToken)
+                
+                UserDefaults.standard.save(accessToken: accessToken)
+
+                
+                
                 
                 print("Inside of tokenRequest: \(accessToken)")
+                
+                
                 
                 
                 

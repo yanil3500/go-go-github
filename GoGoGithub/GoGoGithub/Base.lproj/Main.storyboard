@@ -58,6 +58,9 @@
                             <constraint firstAttribute="trailing" secondItem="Hit-MP-tzo" secondAttribute="trailing" constant="16" id="xKK-zf-n4g"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="loginButtont" destination="j44-Mr-u1r" id="Xs6-og-UxA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

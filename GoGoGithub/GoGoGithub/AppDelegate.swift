@@ -21,13 +21,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        GitHub.shared.tokenRequestFor(url: url, saveOptions: .UserDefaults) { (success) in
-            if success {
-                print("Token was successfully retrieved")
-            } else {
-                print("Token retrieval failed.")
+        
+        if UserDefaults.standard.getAccessToken() == nil {
+            GitHub.shared.tokenRequestFor(url: url, saveOptions: .UserDefaults(UserDefaults.standard.getAccessToken())) { (saveOptions ,success) in
+                if success {
+                    print("Token retrieval was successful.")
+                } else {
+                    print("Token retrieval failed.")
+                }
             }
         }
+        
+        
+        
         return true
     }
     
