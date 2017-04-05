@@ -32,7 +32,6 @@ class RepoViewController: UIViewController {
         
         self.repoTableView.dataSource = self
         self.repoTableView.delegate = self
-        
         self.searchBar.delegate = self
         
         //Adds margin between the top of my view and top of my table view
@@ -83,10 +82,11 @@ class RepoViewController: UIViewController {
 //MARK: RepoViewController UITableViewDelegate
 extension RepoViewController: UITableViewDelegate {
     
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: RepoDetailViewController.identifier, sender: nil)
         print("Repos at position \(indexPath.row): \(self.repos[indexPath.row])")
     }
+    
 }
 
 

@@ -12,6 +12,8 @@
 		CD4341DA1E92B1EC00619530 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD4341D81E92B1EC00619530 /* Main.storyboard */; };
 		CD4341DC1E92B1EC00619530 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD4341DB1E92B1EC00619530 /* Assets.xcassets */; };
 		CD4341DF1E92B1EC00619530 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD4341DD1E92B1EC00619530 /* LaunchScreen.storyboard */; };
+		CD6CC1C31E956E7A0085323E /* RepoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6CC1C21E956E7A0085323E /* RepoDetailViewController.swift */; };
+		CD6CC1C51E9570850085323E /* CustomTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6CC1C41E9570850085323E /* CustomTransition.swift */; };
 		CDAAE6361E92C91B00B59C3D /* GitHub.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAAE6351E92C91B00B59C3D /* GitHub.swift */; };
 		CDAAE63A1E92CE6500B59C3D /* GitHubAuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAAE6391E92CE6500B59C3D /* GitHubAuthController.swift */; };
 		CDAAE63D1E92D60D00B59C3D /* gitHubCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAAE63C1E92D60D00B59C3D /* gitHubCredentials.swift */; };
@@ -29,6 +31,8 @@
 		CD4341DB1E92B1EC00619530 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CD4341DE1E92B1EC00619530 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CD4341E01E92B1EC00619530 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CD6CC1C21E956E7A0085323E /* RepoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepoDetailViewController.swift; sourceTree = "<group>"; };
+		CD6CC1C41E9570850085323E /* CustomTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTransition.swift; sourceTree = "<group>"; };
 		CDAAE6351E92C91B00B59C3D /* GitHub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHub.swift; sourceTree = "<group>"; };
 		CDAAE6391E92CE6500B59C3D /* GitHubAuthController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GitHubAuthController.swift; path = ../GitHubAuthController.swift; sourceTree = "<group>"; };
 		CDAAE63C1E92D60D00B59C3D /* gitHubCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = gitHubCredentials.swift; sourceTree = "<group>"; };
@@ -73,11 +77,20 @@
 				CD4341D41E92B1EC00619530 /* AppDelegate.swift */,
 				CD4341D81E92B1EC00619530 /* Main.storyboard */,
 				CD4341DB1E92B1EC00619530 /* Assets.xcassets */,
+				CD6CC1C61E9572490085323E /* view */,
 				CDAAE6381E92C95800B59C3D /* model */,
 				CD4341E01E92B1EC00619530 /* Info.plist */,
 				CD4341DD1E92B1EC00619530 /* LaunchScreen.storyboard */,
 			);
 			path = GoGoGithub;
+			sourceTree = "<group>";
+		};
+		CD6CC1C61E9572490085323E /* view */ = {
+			isa = PBXGroup;
+			children = (
+				CDF4865A1E9455B600E0CB68 /* RepoCell.swift */,
+			);
+			name = view;
 			sourceTree = "<group>";
 		};
 		CDAAE6381E92C95800B59C3D /* model */ = {
@@ -94,8 +107,9 @@
 		CDAAE63B1E92CE7800B59C3D /* controllers */ = {
 			isa = PBXGroup;
 			children = (
-				CDF4865A1E9455B600E0CB68 /* RepoCell.swift */,
+				CD6CC1C21E956E7A0085323E /* RepoDetailViewController.swift */,
 				CDF486521E940C0700E0CB68 /* RepoViewController.swift */,
+				CD6CC1C41E9570850085323E /* CustomTransition.swift */,
 				CDAAE6391E92CE6500B59C3D /* GitHubAuthController.swift */,
 			);
 			name = controllers;
@@ -176,11 +190,13 @@
 			files = (
 				CDAAE6361E92C91B00B59C3D /* GitHub.swift in Sources */,
 				CDF486551E940D5800E0CB68 /* UIExtensions.swift in Sources */,
+				CD6CC1C51E9570850085323E /* CustomTransition.swift in Sources */,
 				CDAAE63A1E92CE6500B59C3D /* GitHubAuthController.swift in Sources */,
 				CDF486571E94195C00E0CB68 /* Repository.swift in Sources */,
 				CDF4865B1E9455B600E0CB68 /* RepoCell.swift in Sources */,
 				CDF486531E940C0700E0CB68 /* RepoViewController.swift in Sources */,
 				CD4341D51E92B1EC00619530 /* AppDelegate.swift in Sources */,
+				CD6CC1C31E956E7A0085323E /* RepoDetailViewController.swift in Sources */,
 				CD0D112E1E92EC250071402A /* FoundationExtension.swift in Sources */,
 				CDAAE63D1E92D60D00B59C3D /* gitHubCredentials.swift in Sources */,
 			);

@@ -129,11 +129,30 @@
                     <connections>
                         <outlet property="repoTableView" destination="EHn-bx-FLq" id="gZs-o2-ERD"/>
                         <outlet property="searchBar" destination="TR3-1l-COm" id="yMH-bM-Vpi"/>
+                        <segue destination="hl7-He-HeH" kind="presentation" identifier="RepoDetailViewController" id="12z-F6-sXN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Ro-uT-wic" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1040.8" y="138.98050974512745"/>
+        </scene>
+        <!--Repo Detail View Controller-->
+        <scene sceneID="dPH-JS-29z">
+            <objects>
+                <viewController id="hl7-He-HeH" customClass="RepoDetailViewController" customModule="GoGoGithub" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jCZ-wy-dmz"/>
+                        <viewControllerLayoutGuide type="bottom" id="d9N-cH-26e"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="K4G-p8-hEG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qgw-dP-yEA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2109" y="152"/>
         </scene>
     </scenes>
     <resources>
