@@ -75,7 +75,24 @@ class RepoViewController: UIViewController {
 
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        if segue.identifier == RepoDetailViewController.identifier {
+            segue.destination.transitioningDelegate = self
+        }
+    }
 
+}
+
+
+//MARK: RepoViewController conforms to UIViewControllerTransitioningDelegate
+extension RepoViewController: UIViewControllerTransitioningDelegate {
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return CustomTransition(1.0)
+    }
 }
 
 
