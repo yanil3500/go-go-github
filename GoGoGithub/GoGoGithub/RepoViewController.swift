@@ -10,6 +10,9 @@ import UIKit
 
 class RepoViewController: UIViewController {
     
+
+    var spinner : UIActivityIndicatorView!
+    
     @IBOutlet weak var repoTableView: UITableView!
     var repos = [Repository]() {
         didSet {
@@ -17,31 +20,38 @@ class RepoViewController: UIViewController {
         }
     }
     
+    func startSpinner(){
+        self.spinner = UIActivityIndicatorView()
+        self.spinner.center = self.view.center
+        self.spinner.hidesWhenStopped = true
+        self.spinner.activityIndicatorViewStyle = .whiteLarge
+        self.spinner.color = UIColor.black
+        self.view.addSubview(spinner)
+        self.spinner.startAnimating()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        self.title = "Repos"
         self.repoTableView.dataSource = self
         self.repoTableView.delegate = self
         
         
         self.repoTableView.estimatedRowHeight = 50
         self.repoTableView.rowHeight = UITableViewAutomaticDimension
+        
         self.update()
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func update() {
+        self.startSpinner()
         print("update repo controller here!")
         GitHub.shared.getRepos { (reposFromCall) in
             guard let reposUnwrapped = reposFromCall else { return }
             
             OperationQueue.main.addOperation {
+                self.spinner.stopAnimating()
                 self.repos = reposUnwrapped
             }
 
@@ -72,6 +82,6 @@ extension RepoViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Repos at position \(indexPath.row): \(self.repos[indexPath.row])")
+
     }
 }
