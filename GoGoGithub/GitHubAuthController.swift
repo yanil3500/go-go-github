@@ -10,8 +10,7 @@ import UIKit
 
 class GitHubAuthController: UIViewController {
 
-    @IBOutlet weak var loginButtont: UIButton!
-    
+    @IBOutlet weak var loginButton: UIButton!
     
     override func viewDidLoad() {
         
@@ -23,23 +22,12 @@ class GitHubAuthController: UIViewController {
         super.viewDidAppear(animated)
         
         if UserDefaults.standard.getAccessToken() != nil {
-            self.loginButtont.isEnabled = false
-            self.loginButtont.alpha = 0.5
+            self.loginButton.isEnabled = false
+            self.loginButton.alpha = 0.5
         }
 
     }
 
-    @IBAction func printTokenTapped(_ sender: Any) {
-        self.view.layoutIfNeeded()
-        if UserDefaults.standard.getAccessToken() == nil {
-            print("Login to get an access token.")
-        } else {
-            print("Inside of printTokenTapped: \(String(describing: UserDefaults.standard.getAccessToken()))")
-        }
-        
-        
-
-    }
     
 
     @IBAction func loginButtonTapped(_ sender: Any) {

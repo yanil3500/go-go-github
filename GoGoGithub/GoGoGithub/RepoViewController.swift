@@ -11,6 +11,7 @@ import UIKit
 class RepoViewController: UIViewController {
     
     @IBOutlet weak var repoTableView: UITableView!
+    var spinner : UIActivityIndicatorView!
     var repos = [Repository]() {
         didSet {
             self.repoTableView.reloadData()
@@ -30,7 +31,21 @@ class RepoViewController: UIViewController {
         self.update()
         // Do any additional setup after loading the view.
     }
-
+    
+//    func startSpinner(){
+//      self.spinner = UIActivityIndicatorView()
+//      self.spinner.center = self.view.center
+//      self.spinner.hidesWhenStopped = true
+//      self.spinner.activityIndicatorViewStyle = .whiteLarge
+//      self.spinner.color = UIColor.black
+//      self.view.addSubview(spinner)
+//      self.spinner.startAnimating()
+//    }
+//    
+//    func stopSpinner(){
+//        self.spinner.stopAnimating()
+//    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -41,8 +56,10 @@ class RepoViewController: UIViewController {
         GitHub.shared.getRepos { (reposFromCall) in
             guard let reposUnwrapped = reposFromCall else { return }
             
+            
             OperationQueue.main.addOperation {
                 self.repos = reposUnwrapped
+                
             }
 
         }

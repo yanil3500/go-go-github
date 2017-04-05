@@ -34,12 +34,6 @@ class GitHub {
         self.components.scheme = "https"
         self.components.host = "api.github.com"
         
-        if let token = UserDefaults.standard.getAccessToken(){
-            let queryItem = URLQueryItem(name: "access_token", value: token)
-            let queryItemByCreate = URLQueryItem(name: "sort", value: "updated")
-            let queryItemByCreateAsc = URLQueryItem(name: "direction", value: "desc")
-            self.components.queryItems = [queryItem, queryItemByCreate, queryItemByCreateAsc]
-        }
         
         
     }
@@ -111,7 +105,6 @@ class GitHub {
                 guard let dataString = String(data: data, encoding: .utf8) else { complete(success: false); return}
                 
                 guard let token = dataString.components(separatedBy: "&").first?.components(separatedBy: "=").last else { complete(success: false); return}
-                
                 UserDefaults.standard.save(accessToken: token)
 
                 
@@ -132,6 +125,13 @@ class GitHub {
     }
     
     func getRepos(completion: @escaping FetchReposCompletion){
+        
+        if let token = UserDefaults.standard.getAccessToken(){
+            let queryItem = URLQueryItem(name: "access_token", value: token)
+            let queryItemByCreate = URLQueryItem(name: "sort", value: "updated")
+            let queryItemByCreateAsc = URLQueryItem(name: "direction", value: "desc")
+            self.components.queryItems = [queryItem, queryItemByCreate, queryItemByCreateAsc]
+        }
         
         func returnToMain(results: [Repository]?){
             OperationQueue.main.addOperation {
