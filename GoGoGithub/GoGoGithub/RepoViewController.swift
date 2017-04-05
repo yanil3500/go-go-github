@@ -93,12 +93,16 @@ extension RepoViewController: UITableViewDelegate {
 //MARK: RepoViewController UITableViewDataSource
 extension RepoViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //By using nil coalescing, the number of rows will dynamically change in response to the user's search criteria
+        //If the search bar is empty, the row count will default to the number of repos in our repos collection
         return displayRepos?.count ?? self.repos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let repoCell = tableView.dequeueReusableCell(withIdentifier: "repoCell", for: indexPath) as! RepoCell
         
+        //By using nil coalescing, the tableView will be populated with the repos matching the search criteria
+        //If search bar is empty, the conditional displayRepos array will be empty so the tableView defaults to the repos array
         repoCell.repoName.text = displayRepos?[indexPath.row].repoName ?? self.repos[indexPath.row].repoName
         
         repoCell.repoDescription.text = displayRepos?[indexPath.row].description ?? self.repos[indexPath.row].description
@@ -113,6 +117,7 @@ extension RepoViewController: UITableViewDataSource {
 extension RepoViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard let searchedText = searchBar.text else { return; }
+        //Populates table according to what user is searching for
         self.displayRepos = self.repos.filter({ (repo) -> Bool in
             repo.repoName.contains(searchedText)
         })
@@ -124,6 +129,7 @@ extension RepoViewController: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.displayRepos = nil
+        //Dismissed the keyboard from the view once user clicks on cancel button
         self.searchBar.resignFirstResponder()
     }
     
