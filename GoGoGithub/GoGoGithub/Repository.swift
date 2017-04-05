@@ -9,15 +9,15 @@
 import Foundation
 
 class Repository {
-    let repoName : String?
-    let description : String?
-    let language : String?
-    let lastUpdated : String?
+    let repoName : String
+    let description : String
+    let language : String
+    let lastUpdated : String
     
     init?(json: [String : Any]) {
-        self.repoName = json["name"] as? String
-        self.description = json["description"] as? String
-        self.language = json["language"] as? String
-        self.lastUpdated = json["updated_at"] as? String
+        self.repoName = json["name"] as! String
+        self.description = json["description"] as! String
+        self.language = json["language"] as! String
+        self.lastUpdated = json["updated_at"] as! String
     }
 }

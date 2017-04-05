@@ -11,8 +11,16 @@ import UIKit
 class RepoViewController: UIViewController {
     
     @IBOutlet weak var repoTableView: UITableView!
+    
+    @IBOutlet weak var searchBar: UISearchBar!
     var spinner : UIActivityIndicatorView!
     var repos = [Repository]() {
+        didSet {
+            self.repoTableView.reloadData()
+        }
+    }
+    
+    var displayRepos : [Repository]? {
         didSet {
             self.repoTableView.reloadData()
         }
@@ -24,6 +32,11 @@ class RepoViewController: UIViewController {
         
         self.repoTableView.dataSource = self
         self.repoTableView.delegate = self
+        
+        self.searchBar.delegate = self
+        
+        //Adds margin between the top of my view and top of my table view
+        self.repoTableView.contentInset = UIEdgeInsets(top: 20, left: 0,bottom: 0,right: 0)
         
         
         self.repoTableView.estimatedRowHeight = 50
@@ -59,7 +72,6 @@ class RepoViewController: UIViewController {
             
             OperationQueue.main.addOperation {
                 self.repos = reposUnwrapped
-                
             }
 
         }
@@ -68,27 +80,57 @@ class RepoViewController: UIViewController {
 }
 
 
-//MARK: RepoViewController conforms to UITableViewDataSource, UITableViewDelegate
-extension RepoViewController: UITableViewDataSource, UITableViewDelegate {
+//MARK: RepoViewController UITableViewDelegate
+extension RepoViewController: UITableViewDelegate {
     
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.repos.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let repoCell = tableView.dequeueReusableCell(withIdentifier: "repoCell", for: indexPath) as! RepoCell
-        
-        repoCell.repoName.text = self.repos[indexPath.row].repoName
-        
-        repoCell.repoDescription.text = self.repos[indexPath.row].description
-
-        
-        return repoCell
-        
-    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Repos at position \(indexPath.row): \(self.repos[indexPath.row])")
     }
 }
+
+
+//MARK: RepoViewController UITableViewDataSource
+extension RepoViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return displayRepos?.count ?? self.repos.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let repoCell = tableView.dequeueReusableCell(withIdentifier: "repoCell", for: indexPath) as! RepoCell
+        
+        repoCell.repoName.text = displayRepos?[indexPath.row].repoName ?? self.repos[indexPath.row].repoName
+        
+        repoCell.repoDescription.text = displayRepos?[indexPath.row].description ?? self.repos[indexPath.row].description
+        
+        
+        return repoCell
+        
+    }
+}
+
+//MARK: RepoViewController UISearchBarDelegate
+extension RepoViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard let searchedText = searchBar.text else { return; }
+        self.displayRepos = self.repos.filter({ (repo) -> Bool in
+            repo.repoName.contains(searchedText)
+        })
+        
+        if searchBar.text == "" {
+            self.displayRepos = nil
+        }
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.displayRepos = nil
+        self.searchBar.resignFirstResponder()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        //Dismisses the keyboard from the view once user clicks search bar
+        self.searchBar.resignFirstResponder()
+    }
+}
+
+

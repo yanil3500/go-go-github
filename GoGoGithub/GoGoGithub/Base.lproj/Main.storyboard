@@ -80,9 +80,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search Repositories" showsCancelButton="YES" id="TR3-1l-COm">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="repoCell" rowHeight="98" id="nQC-Ae-dyJ" userLabel="repoCell" customClass="RepoCell" customModule="GoGoGithub" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="98"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="98"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nQC-Ae-dyJ" id="GFl-hz-bli">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="97.5"/>
@@ -122,6 +127,7 @@
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <connections>
                         <outlet property="repoTableView" destination="EHn-bx-FLq" id="gZs-o2-ERD"/>
+                        <outlet property="searchBar" destination="TR3-1l-COm" id="yMH-bM-Vpi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Ro-uT-wic" userLabel="First Responder" sceneMemberID="firstResponder"/>
