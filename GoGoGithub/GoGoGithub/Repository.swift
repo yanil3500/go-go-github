@@ -26,6 +26,6 @@ class Repository {
         if let numOfStars = json["stargazers_count"] as? Int {
             self.numberOfStars = numOfStars
         }
-        self.createdAt = json["created_at"] as! String 
+        self.createdAt = json["created_at"] as! String
     }
 }

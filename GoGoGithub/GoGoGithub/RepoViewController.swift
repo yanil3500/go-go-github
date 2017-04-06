@@ -124,7 +124,6 @@ extension RepoViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("Inside of cellForRowAt: \(RepositoryCell.identifier)")
         let repoCell = tableView.dequeueReusableCell(withIdentifier: RepositoryCell.identifier, for: indexPath) as! RepositoryCell
         
         //By using nil coalescing, the tableView will be populated with the repos matching the search criteria

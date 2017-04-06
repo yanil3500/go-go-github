@@ -41,7 +41,7 @@ extension RepoDetailViewController: UITableViewDataSource {
         let repoDetailCell = tableView.dequeueReusableCell(withIdentifier: RepoDetailCell.identifier, for: indexPath) as! RepoDetailCell
         repoDetailCell.repoName.text = self.repo.repoName
         repoDetailCell.repoDescription.text = self.repo.description
-        repoDetailCell.programmingLanguage.text = self.repo.language
+        repoDetailCell.programmingLanguage.text = "Programming Language: \(self.repo.language)"
         if self.repo.isForked == true {
             repoDetailCell.isForked.text = "isForked: Yes."
         } else {
@@ -52,7 +52,12 @@ extension RepoDetailViewController: UITableViewDataSource {
         } else {
             repoDetailCell.numberOfStars.text = "No stars."
         }
-        repoDetailCell.createdAt.text = self.repo.createdAt
+        
+        if let time = self.repo.createdAt.dateToString() {
+            repoDetailCell.createdAt.text = "Created on: \(time)"
+        } else {
+            repoDetailCell.createdAt.text = self.repo.createdAt
+        }
         
         return repoDetailCell
     }

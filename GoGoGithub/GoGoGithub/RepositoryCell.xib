@@ -28,7 +28,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repo Description" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xph-80-UJF">
-                        <rect key="frame" x="8" y="37" width="304" height="21"/>
+                        <rect key="frame" x="0.0" y="37" width="320" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="ERl-g7-yui"/>
                         </constraints>
@@ -37,20 +37,19 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Stars" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PbY-0P-eAN">
-                        <rect key="frame" x="8" y="66" width="304" height="28"/>
+                        <rect key="frame" x="8" y="77" width="304" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="Xph-80-UJF" secondAttribute="trailing" id="7T4-wy-o8J"/>
                     <constraint firstItem="PbY-0P-eAN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="C2M-QH-ueC"/>
-                    <constraint firstAttribute="trailing" secondItem="Xph-80-UJF" secondAttribute="trailing" constant="8" id="CXe-pm-KKt"/>
                     <constraint firstAttribute="bottom" secondItem="PbY-0P-eAN" secondAttribute="bottom" constant="46.5" id="P7k-x4-gdz"/>
                     <constraint firstItem="Xph-80-UJF" firstAttribute="top" secondItem="Sib-Rm-va4" secondAttribute="bottom" constant="8" id="S0g-kI-96a"/>
-                    <constraint firstItem="PbY-0P-eAN" firstAttribute="top" secondItem="Xph-80-UJF" secondAttribute="bottom" constant="8" id="UpG-DM-JNo"/>
                     <constraint firstItem="Sib-Rm-va4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="jyj-NR-DXb"/>
-                    <constraint firstItem="Xph-80-UJF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="qx7-UZ-OVK"/>
+                    <constraint firstItem="Xph-80-UJF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="pBU-IS-nVm"/>
                     <constraint firstItem="Sib-Rm-va4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="rRo-dI-K0w"/>
                     <constraint firstAttribute="trailing" secondItem="PbY-0P-eAN" secondAttribute="trailing" constant="8" id="viG-58-2Ti"/>
                     <constraint firstAttribute="trailing" secondItem="Sib-Rm-va4" secondAttribute="trailing" constant="8" id="xE3-QY-ida"/>
