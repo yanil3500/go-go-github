@@ -7,12 +7,30 @@
 //
 
 import UIKit
+import SafariServices
 
 class RepoDetailViewController: UIViewController {
     
     var repo : Repository!
     
     @IBOutlet weak var repoDetailTableView: UITableView!
+
+    @IBAction func moreButtonTapped(_ sender: Any) {
+        
+        print("moreButtonTapped")
+        presentSafariViewController(urlString: repo.repoUrlString)
+    }
+    
+    //SafariViewController
+    func presentSafariViewController(urlString: String){
+        
+        guard let url = URL(string: urlString) else { return }
+        
+        let safariController = SFSafariViewController(url: url)
+        
+        self.present(safariController, animated: true, completion: nil)
+        
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

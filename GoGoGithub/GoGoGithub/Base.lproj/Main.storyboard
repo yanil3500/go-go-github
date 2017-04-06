@@ -129,6 +129,11 @@
                                                 <segue destination="8ve-gi-LCV" kind="presentation" id="dSP-3B-1UF"/>
                                             </connections>
                                         </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="More Details" id="45N-1s-uzX">
+                                            <connections>
+                                                <action selector="moreButtonTapped:" destination="hl7-He-HeH" id="DtR-c5-fiZ"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>

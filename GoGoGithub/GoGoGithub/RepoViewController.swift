@@ -147,6 +147,11 @@ extension RepoViewController: UITableViewDataSource {
 //MARK: RepoViewController UISearchBarDelegate
 extension RepoViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if !searchText.validate(){
+            let lastIndex = searchText.index(before: searchText.endIndex)
+            searchBar.text = searchText.substring(to: lastIndex)
+        }
         guard let searchedText = searchBar.text else { return; }
         //Populates table according to what user is searching for
         self.displayRepos = self.repos.filter({ (repo) -> Bool in
