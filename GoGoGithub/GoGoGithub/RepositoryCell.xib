@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="141" id="KGk-i7-Jjw" customClass="RepositoryCell" customModule="GoGoGithub" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="141"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="140.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repo Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sib-Rm-va4">
+                        <rect key="frame" x="8" y="8" width="304" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="8nc-2D-dpm"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repo Description" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xph-80-UJF">
+                        <rect key="frame" x="0.0" y="37" width="320" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="ERl-g7-yui"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Stars" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PbY-0P-eAN">
+                        <rect key="frame" x="8" y="77" width="304" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="Xph-80-UJF" secondAttribute="trailing" id="7T4-wy-o8J"/>
+                    <constraint firstItem="PbY-0P-eAN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="C2M-QH-ueC"/>
+                    <constraint firstAttribute="bottom" secondItem="PbY-0P-eAN" secondAttribute="bottom" constant="46.5" id="P7k-x4-gdz"/>
+                    <constraint firstItem="Xph-80-UJF" firstAttribute="top" secondItem="Sib-Rm-va4" secondAttribute="bottom" constant="8" id="S0g-kI-96a"/>
+                    <constraint firstItem="Sib-Rm-va4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="jyj-NR-DXb"/>
+                    <constraint firstItem="Xph-80-UJF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="pBU-IS-nVm"/>
+                    <constraint firstItem="Sib-Rm-va4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="rRo-dI-K0w"/>
+                    <constraint firstAttribute="trailing" secondItem="PbY-0P-eAN" secondAttribute="trailing" constant="8" id="viG-58-2Ti"/>
+                    <constraint firstAttribute="trailing" secondItem="Sib-Rm-va4" secondAttribute="trailing" constant="8" id="xE3-QY-ida"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="numberOfStars" destination="PbY-0P-eAN" id="gdK-qD-z6Q"/>
+                <outlet property="repoDescription" destination="Xph-80-UJF" id="Civ-u9-JPp"/>
+                <outlet property="repoName" destination="Sib-Rm-va4" id="pEo-Nc-yUB"/>
+            </connections>
+            <point key="canvasLocation" x="34" y="11.5"/>
+        </tableViewCell>
+    </objects>
+</document>
