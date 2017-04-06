@@ -9,27 +9,51 @@
 import UIKit
 
 class RepoDetailViewController: UIViewController {
+    
+    var repo : Repository!
+    
+    @IBOutlet weak var repoDetailTableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        print("Inside of RepoDetailViewController: \(repo.repoName)")
+        //Adds margin between the top of my view and top of my table view
         // Do any additional setup after loading the view.
+        
+        let repoDetailNib = UINib(nibName: "RepoDetailCell", bundle: nil)
+        self.repoDetailTableView.register(repoDetailNib, forCellReuseIdentifier: RepoDetailCell.identifier)
+        
+        self.repoDetailTableView.estimatedRowHeight = 50
+        self.repoDetailTableView.rowHeight = UITableViewAutomaticDimension
+        self.repoDetailTableView.dataSource = self
+        
     }
+}
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
+
+extension RepoDetailViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let repoDetailCell = tableView.dequeueReusableCell(withIdentifier: RepoDetailCell.identifier, for: indexPath) as! RepoDetailCell
+        repoDetailCell.repoName.text = self.repo.repoName
+        repoDetailCell.repoDescription.text = self.repo.description
+        repoDetailCell.programmingLanguage.text = self.repo.language
+        if self.repo.isForked == true {
+            repoDetailCell.isForked.text = "isForked: Yes."
+        } else {
+            repoDetailCell.isForked.text = "isForked: No."
+        }
+        if let num = self.repo.numberOfStars, num > 0{
+            repoDetailCell.numberOfStars.text = "Number of Stars: \(num)"
+        } else {
+            repoDetailCell.numberOfStars.text = "No stars."
+        }
+        repoDetailCell.createdAt.text = self.repo.createdAt
+        
+        return repoDetailCell
     }
-    */
-
 }

@@ -37,6 +37,9 @@ class RepoViewController: UIViewController {
         //Adds margin between the top of my view and top of my table view
         self.repoTableView.contentInset = UIEdgeInsets(top: 20, left: 0,bottom: 0,right: 0)
         
+        //Register nib
+        let repoNib = UINib(nibName: "RepositoryCell", bundle: nil)
+        self.repoTableView.register(repoNib, forCellReuseIdentifier: RepositoryCell.identifier)
         
         self.repoTableView.estimatedRowHeight = 50
         self.repoTableView.rowHeight = UITableViewAutomaticDimension
@@ -80,6 +83,11 @@ class RepoViewController: UIViewController {
         super.prepare(for: segue, sender: sender)
         
         if segue.identifier == RepoDetailViewController.identifier {
+            if let selectedIndex = self.repoTableView.indexPathForSelectedRow?.row {
+                let selectedRepo = self.repos[selectedIndex]
+                guard let destinationController = segue.destination as? RepoDetailViewController else { return }
+                destinationController.repo = selectedRepo
+            }
             segue.destination.transitioningDelegate = self
         }
     }
@@ -116,7 +124,8 @@ extension RepoViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let repoCell = tableView.dequeueReusableCell(withIdentifier: "repoCell", for: indexPath) as! RepoCell
+        print("Inside of cellForRowAt: \(RepositoryCell.identifier)")
+        let repoCell = tableView.dequeueReusableCell(withIdentifier: RepositoryCell.identifier, for: indexPath) as! RepositoryCell
         
         //By using nil coalescing, the tableView will be populated with the repos matching the search criteria
         //If search bar is empty, the conditional displayRepos array will be empty so the tableView defaults to the repos array
@@ -124,7 +133,13 @@ extension RepoViewController: UITableViewDataSource {
         
         repoCell.repoDescription.text = displayRepos?[indexPath.row].description ?? self.repos[indexPath.row].description
         
-        
+        if let num = displayRepos?[indexPath.row].numberOfStars {
+            repoCell.numberOfStars.text = "Number of Stars: \(num)"
+        } else {
+            if let num = self.repos[indexPath.row].numberOfStars{
+                repoCell.numberOfStars.text = "Number of Stars: \(num)"
+            }
+        }
         return repoCell
         
     }
