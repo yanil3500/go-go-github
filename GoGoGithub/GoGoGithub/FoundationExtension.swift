@@ -21,3 +21,18 @@ extension UserDefaults {
         return UserDefaults.standard.synchronize()
     }
 }
+
+extension String{
+    func dateToString() -> String?{
+        let dateFormatter = ISO8601DateFormatter()
+        dateFormatter.formatOptions = [.withFullDate, .withFullTime]
+        let string = dateFormatter.date(from: self).map { (date) -> String in
+            String(describing: date)
+        }
+        let time = string!.components(separatedBy: " ").dropLast().joined(separator: " ")
+        
+
+        return time
+    }
+    
+}
