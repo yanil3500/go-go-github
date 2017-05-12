@@ -9,9 +9,7 @@
 import UIKit
 
 extension UIResponder {
-    static var identifier : String {
+    static var identifier: String {
         return String(describing: self)
     }
 }
-
-

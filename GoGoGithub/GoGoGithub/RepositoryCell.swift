@@ -13,13 +13,10 @@ class RepositoryCell: UITableViewCell {
     @IBOutlet weak var repoName: UILabel!
     @IBOutlet weak var repoDescription: UILabel!
     @IBOutlet weak var numberOfStars: UILabel!
-    
-    
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-    
 
 }

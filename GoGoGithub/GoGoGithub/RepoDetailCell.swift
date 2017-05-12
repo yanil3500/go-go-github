@@ -21,5 +21,4 @@ class RepoDetailCell: UITableViewCell {
         // Initialization code
     }
 
-    
 }
